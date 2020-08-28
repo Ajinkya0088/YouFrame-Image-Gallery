@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title slot="start">
+      YouFrame
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <ion-card align="center">
+  <form [formGroup]="formTemplate" #validate>
+      <img [src]="imgurl" width="150px" height="150px" (click)="fileUploader.click()">
+    <div>
+      <ion-label>Select Image to upload</ion-label><br>
+      <br>
+      <input type="file" accept="image/*" class="form-control" #fileUploader formControlName="imageUrl"
+        (change)="showPreview($event)" required >
+      <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required"><p style="color :red">Image is required.</p>
+      </div>
+    </div>
+    <br>
+    <div class="text-center">
+      <ion-button  (click)="onSubmit(formTemplate.value)">Upload</ion-button>
+    </div>
+    </form>
+  </ion-card>
+</ion-content>
+<ion-footer >
+  <ion-toolbar color="tertiary" >
+    <ion-title align="center">
+      Fullstack Challenge - 2020
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
+

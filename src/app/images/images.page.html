@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title slot="start">
+      YouFrame Gallery
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <br>
+  <div align="center" routerLink="/upload">
+    <ion-button align="center">
+    <ion-icon name="cloud-upload"></ion-icon>
+    Upload
+  </ion-button>
+  <br>
+</div>
+  <ion-grid >
+    <ion-row  >
+      <ion-col  *ngFor="let img of images ;let i=index;" size-xl="4" size-xs="12">
+        <ion-card>
+<ion-card-content>
+  <div align ="center">
+    <img class="image" [src]="img.imageUrl" height="250px" width="350px" >
+    <p style="color: blue;">Image {{i+1}}</p>
+  </div>
+</ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer >
+  <ion-toolbar color="tertiary" >
+    <ion-title align="center">
+      Fullstack Challenge - 2020
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
