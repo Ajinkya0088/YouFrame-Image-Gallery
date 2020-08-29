@@ -14,7 +14,13 @@
   </ion-button>
   <br>
 </div>
-  <ion-grid >
+<br>
+<br>
+<div align="center" *ngIf="loading" >
+<ion-spinner class="spinner" size="large" color="tertiary" ></ion-spinner>
+<p><b>    Loading.....</b></p>
+</div>
+  <ion-grid id="loading" *ngIf="loaded">
     <ion-row  >
       <ion-col  *ngFor="let img of images ;let i=index;" size-xl="4" size-xs="12">
         <ion-card>

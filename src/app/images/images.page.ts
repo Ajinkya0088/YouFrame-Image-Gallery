@@ -13,8 +13,16 @@ export class ImagesPage implements OnInit {
   images: any;
   imageList: any[];
   i: any;
-  ngOnInit() {
-    this.getImageList();
+  loading = true;
+  loaded = false;
+
+  async ngOnInit() {
+    try{
+    await this.getImageList();
+    }
+    catch (err){
+      console.log(err);
+    }
   }
 
   getImageList() {
@@ -25,6 +33,8 @@ export class ImagesPage implements OnInit {
         )
       )
     ).subscribe(images => {
+      this.loading = false;
+      this.loaded = true;
       this.images = images.reverse();
     });
     console.log(this.images);

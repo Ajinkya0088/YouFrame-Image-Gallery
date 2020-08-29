@@ -6,9 +6,10 @@
   </ion-toolbar>
 </ion-header>
 <ion-content >
-  <ion-card align="center">
+  <ion-card align="center" size="5" >
+    <br><br>
   <form [formGroup]="formTemplate" #validate>
-      <img [src]="imgurl" width="150px" height="150px" (click)="fileUploader.click()">
+      <img [src]="imgurl" width="400px" height="350px" (click)="fileUploader.click()">
     <div>
       <ion-label>Select Image to upload</ion-label><br>
       <br>
@@ -21,6 +22,7 @@
     <div class="text-center">
       <ion-button  (click)="onSubmit(formTemplate.value)">Upload</ion-button>
     </div>
+    <br><br>
     </form>
   </ion-card>
 </ion-content>

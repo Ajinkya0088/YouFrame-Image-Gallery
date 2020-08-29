@@ -4,6 +4,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize} from 'rxjs/operators';
 import { Router} from '@angular/router';
 import { ImgService } from '../img.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomePage  implements OnInit{
   selectedimg: any = null;
   isSubmitted = false;
 
-  constructor(private storage: AngularFireStorage,private router: Router, private service: ImgService){}
+  constructor(private storage: AngularFireStorage,private router: Router, private service: ImgService,public alertController: AlertController){}
   formTemplate = new FormGroup({
     imageUrl: new FormControl('', Validators.required)
   })
@@ -48,13 +49,24 @@ export class HomePage  implements OnInit{
         fileref.getDownloadURL().subscribe((url)=>{
           formValue['imageUrl'] = url;
           this.service.addIamge(formValue);
+          this.alert();
           this.resetform();
           this.router.navigateByUrl('/images');
         })
       })
     ).subscribe();
     console.log(path);
-  } 
+  }
+  async alert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alert',
+      message: 'Image Added SuccessFully!',
+      buttons:['ok']
+    });
+
+    await alert.present();
+  }
 
   get formControls() {
     return this.formTemplate['controls'];
@@ -66,7 +78,7 @@ export class HomePage  implements OnInit{
       imageUrl:''
     });
     this.imgurl="assets/img/default.jpeg";
-    this.isSubmitted=false;
-    this.selectedimg=null;
+    this.isSubmitted = false;
+    this.selectedimg = null;
   }
 }
